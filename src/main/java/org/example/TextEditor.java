@@ -71,8 +71,15 @@ public class TextEditor extends JFrame implements ActionListener {
         searchMenu.add(clearHighlightsItem);
 
         menuBar.add(searchMenu);
-    }
+        //add the about menu into the code
+        JMenu aboutMenu = new JMenu("About");
+        JMenuItem aboutItem = new JMenuItem("About");
+        aboutItem.addActionListener(this);
 
+        aboutMenu.add(aboutItem);
+        menuBar.add(aboutMenu);
+    }
+    // The clearHighlight function for search text function
     private void clearHighlights() {
         Highlighter highlighter = textArea.getHighlighter();
         highlighter.removeAllHighlights();
@@ -90,6 +97,8 @@ public class TextEditor extends JFrame implements ActionListener {
             saveFile();
         } else if (e.getActionCommand().equals("Exit")) {
             System.exit(0);
+        } else if (e.getActionCommand().equals("About")) {
+            showAboutMessage();
         }
     }
 
@@ -149,7 +158,14 @@ public class TextEditor extends JFrame implements ActionListener {
             }
         }
     }
+    private void showAboutMessage() {
+        String aboutMessage = "Team Members:\n"
+                + "Member 1: Tongye XU, ID :22009649\n"
+                + "Member 2: Zhaoyang Chen, ID :20013083\n"
+                + "This is a simple text editor application co-developed by both team member.";
 
+        JOptionPane.showMessageDialog(this, aboutMessage, "About", JOptionPane.INFORMATION_MESSAGE);
+    }
 
 
     private void clearTextArea() {
