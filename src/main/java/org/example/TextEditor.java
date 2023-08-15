@@ -26,6 +26,14 @@ public class TextEditor extends JFrame implements ActionListener {
         add(scrollPane, BorderLayout.CENTER);
 
         JMenuBar menuBar = new JMenuBar();
+        //New window button
+        JMenu newMenu = new JMenu("New");
+        JMenuItem newWindowItem = new JMenuItem("New");
+        newWindowItem.addActionListener(this);
+
+        newMenu.add(newWindowItem);
+        menuBar.add(newMenu);
+
         JMenu fileMenu = new JMenu("File");
         JMenuItem openItem = new JMenuItem("Open");
         JMenuItem saveItem = new JMenuItem("Save");
@@ -45,6 +53,7 @@ public class TextEditor extends JFrame implements ActionListener {
         setJMenuBar(menuBar);
 
         fileChooser = new JFileChooser();
+
 
         searchField = new JTextField();
         searchButton = new JButton("Search");
@@ -78,6 +87,7 @@ public class TextEditor extends JFrame implements ActionListener {
 
         aboutMenu.add(aboutItem);
         menuBar.add(aboutMenu);
+
     }
     // The clearHighlight function for search text function
     private void clearHighlights() {
@@ -99,7 +109,14 @@ public class TextEditor extends JFrame implements ActionListener {
             System.exit(0);
         } else if (e.getActionCommand().equals("About")) {
             showAboutMessage();
+        } else if (e.getActionCommand().equals("New")) {
+            createNewWindow();
         }
+    }
+    // New window opener
+    private void createNewWindow() {
+        TextEditor newEditor = new TextEditor();
+        newEditor.setVisible(true);
     }
 
     private void openFile() {

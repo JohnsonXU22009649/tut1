@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1e61e464-d254-4ab6-94bb-23507d86f0c0" name="Changes" comment="Version 1.0 with the search function">
+    <list default="true" id="1e61e464-d254-4ab6-94bb-23507d86f0c0" name="Changes" comment="Version 1.1 with new added function About to display the information of team member">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/TextEditor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/TextEditor.java" afterDir="false" />
     </list>
@@ -14,6 +14,12 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
+    <option name="PUSH_TAGS">
+      <GitPushTagMode>
+        <option name="argument" value="--tags" />
+        <option name="title" value="All" />
+      </GitPushTagMode>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -61,7 +67,14 @@
       <option name="project" value="LOCAL" />
       <updated>1692139508443</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Version 1.1 with new added function About to display the information of team member">
+      <created>1692140327961</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1692140327961</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -77,6 +90,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Version 1.0 with the search function" />
-    <option name="LAST_COMMIT_MESSAGE" value="Version 1.0 with the search function" />
+    <MESSAGE value="Version 1.1 with new added function About to display the information of team member" />
+    <option name="LAST_COMMIT_MESSAGE" value="Version 1.1 with new added function About to display the information of team member" />
   </component>
 </project>
