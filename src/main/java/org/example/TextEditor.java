@@ -54,6 +54,23 @@ public class TextEditor extends JFrame implements ActionListener {
 
         fileChooser = new JFileChooser();
 
+        JMenu editMenu = new JMenu("Edit");
+        JMenuItem selectItem = new JMenuItem("Select All");
+        JMenuItem copyItem = new JMenuItem("Copy");
+        JMenuItem pasteItem = new JMenuItem("Paste");
+        JMenuItem cutItem = new JMenuItem("Cut");
+
+        selectItem.addActionListener(this);
+        copyItem.addActionListener(this);
+        pasteItem.addActionListener(this);
+        cutItem.addActionListener(this);
+
+        editMenu.add(selectItem);
+        editMenu.add(copyItem);
+        editMenu.add(pasteItem);
+        editMenu.add(cutItem);
+
+        menuBar.add(editMenu);
 
         searchField = new JTextField();
         searchButton = new JButton("Search");
@@ -97,7 +114,15 @@ public class TextEditor extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getActionCommand().equals("Search")) {
+        if (e.getActionCommand().equals("Select All")) {
+            selectAllText();
+        } else if (e.getActionCommand().equals("Copy")) {
+            copyText();
+        } else if (e.getActionCommand().equals("Paste")) {
+            pasteText();
+        } else if (e.getActionCommand().equals("Cut")) {
+            cutText();
+        } else if (e.getActionCommand().equals("Search")) {
             searchForText();
         } else if (e.getActionCommand().equals("Clear Highlights")) {
             clearHighlights();
@@ -117,6 +142,22 @@ public class TextEditor extends JFrame implements ActionListener {
     private void createNewWindow() {
         TextEditor newEditor = new TextEditor();
         newEditor.setVisible(true);
+    }
+
+    private void selectAllText() {
+        textArea.selectAll();
+    }
+
+    private void copyText() {
+        textArea.copy();
+    }
+
+    private void pasteText() {
+        textArea.paste();
+    }
+
+    private void cutText() {
+        textArea.cut();
     }
 
     private void openFile() {
