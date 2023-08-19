@@ -7,6 +7,8 @@ import javax.swing.text.Highlighter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.print.PrinterException;
+import java.awt.print.PrinterJob;
 import java.io.*;
 
 public class TextEditor extends JFrame implements ActionListener {
@@ -53,6 +55,12 @@ public class TextEditor extends JFrame implements ActionListener {
         setJMenuBar(menuBar);
 
         fileChooser = new JFileChooser();
+
+        JMenu PrintMenu = new JMenu("Print");
+        JMenuItem printItem = new JMenuItem("Print");
+        printItem.addActionListener(this);
+        PrintMenu.add(printItem);
+        menuBar.add(PrintMenu);
 
         JMenu editMenu = new JMenu("Edit");
         JMenuItem selectItem = new JMenuItem("Select All");
@@ -105,6 +113,7 @@ public class TextEditor extends JFrame implements ActionListener {
         aboutMenu.add(aboutItem);
         menuBar.add(aboutMenu);
 
+
     }
     // The clearHighlight function for search text function
     private void clearHighlights() {
@@ -136,6 +145,8 @@ public class TextEditor extends JFrame implements ActionListener {
             showAboutMessage();
         } else if (e.getActionCommand().equals("New")) {
             createNewWindow();
+        } else if (e.getActionCommand().equals("Print")) {
+            printText();
         }
     }
     // New window opener
@@ -158,6 +169,18 @@ public class TextEditor extends JFrame implements ActionListener {
 
     private void cutText() {
         textArea.cut();
+    }
+
+    private void printText() {
+        PrinterJob job = PrinterJob.getPrinterJob();
+        if (job.printDialog()) {
+            job.setPrintable(textArea.getPrintable(null, null));
+            try {
+                job.print();
+            } catch (PrinterException e) {
+                JOptionPane.showMessageDialog(this, "Error printing the text.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
     }
 
     private void openFile() {
