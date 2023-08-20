@@ -17,6 +17,8 @@ public class TextEditor extends JFrame implements ActionListener {
     private JFileChooser fileChooser;
     private JTextField searchField;
     private JButton searchButton;
+    private JMenuItem timeDateMenuItem; // Added menu item for Time and Date
+
 
     public TextEditor() {
         setTitle("Simple Text Editor");
@@ -67,16 +69,19 @@ public class TextEditor extends JFrame implements ActionListener {
         JMenuItem copyItem = new JMenuItem("Copy");
         JMenuItem pasteItem = new JMenuItem("Paste");
         JMenuItem cutItem = new JMenuItem("Cut");
+        timeDateMenuItem = new JMenuItem("Time and Date"); // Create the menu item
 
         selectItem.addActionListener(this);
         copyItem.addActionListener(this);
         pasteItem.addActionListener(this);
         cutItem.addActionListener(this);
+        timeDateMenuItem.addActionListener(this); // Add action listener for the menu item
 
         editMenu.add(selectItem);
         editMenu.add(copyItem);
         editMenu.add(pasteItem);
         editMenu.add(cutItem);
+        editMenu.add(timeDateMenuItem); // Add the menu item to the Edit menu
 
         menuBar.add(editMenu);
 
@@ -147,6 +152,8 @@ public class TextEditor extends JFrame implements ActionListener {
             createNewWindow();
         } else if (e.getActionCommand().equals("Print")) {
             printText();
+        } else if (e.getActionCommand().equals("timeDateMenuItem")) {
+            insertTimeAndDate(); // Call the function to insert time and date
         }
     }
     // New window opener
@@ -251,6 +258,14 @@ public class TextEditor extends JFrame implements ActionListener {
 
     private void clearTextArea() {
         textArea.setText("");
+    }
+
+    private void insertTimeAndDate() {
+        java.util.Date currentDate = new java.util.Date();
+        String formattedDate = String.format("Time and Date: %tc", currentDate);
+
+        int caretPosition = textArea.getCaretPosition(); // Get the current caret position
+        textArea.insert(formattedDate, caretPosition); // Insert the time and date at the caret position
     }
 
     public static void main(String[] args) {
