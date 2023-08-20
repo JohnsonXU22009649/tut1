@@ -57,34 +57,34 @@ public class TextEditor extends JFrame implements ActionListener {
         setJMenuBar(menuBar);
 
         fileChooser = new JFileChooser();
-
+        // Print menu bar
         JMenu PrintMenu = new JMenu("Print");
         JMenuItem printItem = new JMenuItem("Print");
         printItem.addActionListener(this);
         PrintMenu.add(printItem);
         menuBar.add(PrintMenu);
-
+        // Edit menu bar
         JMenu editMenu = new JMenu("Edit");
         JMenuItem selectItem = new JMenuItem("Select All");
         JMenuItem copyItem = new JMenuItem("Copy");
         JMenuItem pasteItem = new JMenuItem("Paste");
         JMenuItem cutItem = new JMenuItem("Cut");
-        timeDateMenuItem = new JMenuItem("Time and Date"); // Create the menu item
+        JMenuItem timeDateItem = new JMenuItem("Time and Date"); // Create the menu item
 
         selectItem.addActionListener(this);
         copyItem.addActionListener(this);
         pasteItem.addActionListener(this);
         cutItem.addActionListener(this);
-        timeDateMenuItem.addActionListener(this); // Add action listener for the menu item
+        timeDateItem.addActionListener(this); // Add action listener for the menu item
 
         editMenu.add(selectItem);
         editMenu.add(copyItem);
         editMenu.add(pasteItem);
         editMenu.add(cutItem);
-        editMenu.add(timeDateMenuItem); // Add the menu item to the Edit menu
+        editMenu.add(timeDateItem); // Add the menu item to the Edit menu
 
         menuBar.add(editMenu);
-
+        // Search function bar
         searchField = new JTextField();
         searchButton = new JButton("Search");
         searchButton.addActionListener(this);
@@ -118,14 +118,13 @@ public class TextEditor extends JFrame implements ActionListener {
         aboutMenu.add(aboutItem);
         menuBar.add(aboutMenu);
 
-
     }
     // The clearHighlight function for search text function
     private void clearHighlights() {
         Highlighter highlighter = textArea.getHighlighter();
         highlighter.removeAllHighlights();
     }
-
+    // Method of which menu item will be selected by the user
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("Select All")) {
@@ -152,8 +151,8 @@ public class TextEditor extends JFrame implements ActionListener {
             createNewWindow();
         } else if (e.getActionCommand().equals("Print")) {
             printText();
-        } else if (e.getActionCommand().equals("timeDateMenuItem")) {
-            insertTimeAndDate(); // Call the function to insert time and date
+        } else if (e.getActionCommand().equals("Time and Date")) {
+            insertTimeAndDate();
         }
     }
     // New window opener
@@ -161,23 +160,23 @@ public class TextEditor extends JFrame implements ActionListener {
         TextEditor newEditor = new TextEditor();
         newEditor.setVisible(true);
     }
-
+    // Select all text method
     private void selectAllText() {
         textArea.selectAll();
     }
-
+    // Copy text Method
     private void copyText() {
         textArea.copy();
     }
-
+    // Paste text method
     private void pasteText() {
         textArea.paste();
     }
-
+    // Cut text method
     private void cutText() {
         textArea.cut();
     }
-
+    // The method of connecting the text editor to the local printer
     private void printText() {
         PrinterJob job = PrinterJob.getPrinterJob();
         if (job.printDialog()) {
@@ -189,7 +188,7 @@ public class TextEditor extends JFrame implements ActionListener {
             }
         }
     }
-
+    // The method of opening the file
     private void openFile() {
         int returnValue = fileChooser.showOpenDialog(this);
         if (returnValue == JFileChooser.APPROVE_OPTION) {
@@ -210,7 +209,7 @@ public class TextEditor extends JFrame implements ActionListener {
             clearTextArea(); // Clear the text area after opening a file
         }
     }
-
+    //The method of save file
     private void saveFile() {
         int returnValue = fileChooser.showSaveDialog(this);
         if (returnValue == JFileChooser.APPROVE_OPTION) {
@@ -225,7 +224,7 @@ public class TextEditor extends JFrame implements ActionListener {
             }
         }
     }
-
+    // The method of the searching for the word in the page
     private void searchForText() {
         String searchText = searchField.getText();
         Highlighter highlighter = textArea.getHighlighter();
@@ -246,6 +245,7 @@ public class TextEditor extends JFrame implements ActionListener {
             }
         }
     }
+   //The method for showing the About message
     private void showAboutMessage() {
         String aboutMessage = "Team Members:\n"
                 + "Member 1: Tongye XU, ID :22009649\n"
@@ -255,17 +255,14 @@ public class TextEditor extends JFrame implements ActionListener {
         JOptionPane.showMessageDialog(this, aboutMessage, "About", JOptionPane.INFORMATION_MESSAGE);
     }
 
-
     private void clearTextArea() {
         textArea.setText("");
     }
-
+    // The method insert the time and data into the text editor
     private void insertTimeAndDate() {
         java.util.Date currentDate = new java.util.Date();
-        String formattedDate = String.format("Time and Date: %tc", currentDate);
-
-        int caretPosition = textArea.getCaretPosition(); // Get the current caret position
-        textArea.insert(formattedDate, caretPosition); // Insert the time and date at the caret position
+        String formattedDate = String.format("%tc", currentDate);
+        textArea.insert(formattedDate + "\n", 0); // Insert at the beginning of the text area
     }
 
     public static void main(String[] args) {
