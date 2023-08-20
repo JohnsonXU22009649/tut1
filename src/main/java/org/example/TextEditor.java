@@ -17,11 +17,11 @@ public class TextEditor extends JFrame implements ActionListener {
     private JFileChooser fileChooser;
     private JTextField searchField;
     private JButton searchButton;
-    private JMenuItem timeDateMenuItem; // Added menu item for Time and Date
+
 
 
     public TextEditor() {
-        setTitle("Simple Text Editor");
+        setTitle("Text Editor");
         setSize(800, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -118,6 +118,7 @@ public class TextEditor extends JFrame implements ActionListener {
         aboutMenu.add(aboutItem);
         menuBar.add(aboutMenu);
 
+
     }
     // The clearHighlight function for search text function
     private void clearHighlights() {
@@ -193,6 +194,7 @@ public class TextEditor extends JFrame implements ActionListener {
         int returnValue = fileChooser.showOpenDialog(this);
         if (returnValue == JFileChooser.APPROVE_OPTION) {
             File selectedFile = fileChooser.getSelectedFile();
+            System.out.println("Selected file: " + selectedFile.getAbsolutePath()); // Debugging line
             try {
                 BufferedReader reader = new BufferedReader(new FileReader(selectedFile));
                 StringBuilder content = new StringBuilder();
@@ -204,7 +206,7 @@ public class TextEditor extends JFrame implements ActionListener {
                 textArea.setText(content.toString());
             } catch (IOException ex) {
                 ex.printStackTrace();
-                JOptionPane.showMessageDialog(this, "Error opening the file.", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Error opening the file:\n" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
             clearTextArea(); // Clear the text area after opening a file
         }
