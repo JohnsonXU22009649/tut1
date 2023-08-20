@@ -208,7 +208,6 @@ public class TextEditor extends JFrame implements ActionListener {
                 ex.printStackTrace();
                 JOptionPane.showMessageDialog(this, "Error opening the file:\n" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
-            clearTextArea(); // Clear the text area after opening a file
         }
     }
     //The method of save file
@@ -257,9 +256,6 @@ public class TextEditor extends JFrame implements ActionListener {
         JOptionPane.showMessageDialog(this, aboutMessage, "About", JOptionPane.INFORMATION_MESSAGE);
     }
 
-    private void clearTextArea() {
-        textArea.setText("");
-    }
     // The method insert the time and data into the text editor
     private void insertTimeAndDate() {
         java.util.Date currentDate = new java.util.Date();
